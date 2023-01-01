@@ -54,7 +54,6 @@ class UserProfileView(
         return reverse_lazy('users:profile', args=(self.object.id,))
 
 
-
 class EmailVerificationView(TemplateView):
 
     template_name = 'users/email_verification.html'
