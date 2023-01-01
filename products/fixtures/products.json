@@ -1,0 +1,62 @@
+[
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "Худи Adidas",
+    "description": "Черное худи Adidas",
+    "price": "15000.00",
+    "quantity": 10,
+    "image": "products_images/Adidas-hoodie.png",
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "Ботинки ДРМартенс",
+    "description": "Супер дорогие ботинки ДРМартенс",
+    "price": "20000.00",
+    "quantity": 10,
+    "image": "products_images/Black-Dr-Martens-shoes.png",
+    "category": 2
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "Some products",
+    "description": "some description",
+    "price": "5000.00",
+    "quantity": 20,
+    "image": "products_images/Brown-sports-oversized-top-ASOS-DESIGN.png",
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "Рюкзак Nike",
+    "description": "Черный рюкзак Nike",
+    "price": "4000.00",
+    "quantity": 19,
+    "image": "products_images/Black-Nike-Heritage-backpack.png",
+    "category": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "Синий жакет",
+    "description": "Какой-то синий жакет",
+    "price": "5000.00",
+    "quantity": 20,
+    "image": "products_images/Blue-jacket-The-North-Face.png",
+    "category": 1
+  }
+}
+]
