@@ -41,8 +41,6 @@ class BasketRelatedManager(models.QuerySet):
         return sum(good.quantity for good in self)
 
 
-
-
 class Basket(models.Model):
 
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
