@@ -2,6 +2,7 @@ from django.urls import path
 
 from products.views import ProductsView, add_basket, remove_basket
 
+
 app_name = 'products'
 
 urlpatterns = [

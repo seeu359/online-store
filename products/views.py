@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
+from django.core.cache import cache
 
 from products.models import Basket, Product, ProductCategory
+
 
 PER_PAGE = 3
 
@@ -17,20 +19,32 @@ class ProductsView(ListView):
     def get_queryset(self):
         """Filtration by category. If category_id is not None, return list
          goods filtered by category"""
+
         query_set = super().get_queryset()
         category_id = self.kwargs.get('category_id')
+
         return query_set.filter(category_id=category_id) if category_id \
             else query_set
 
     def get_context_data(self, *, object_list=None, **kwargs):
+
         context = super().get_context_data()
-        context['categories'] = ProductCategory.objects.all()
+        categories = cache.get('categories')
+
+        if not categories:
+            context['categories'] = ProductCategory.objects.all()
+            cache.set('categories', context['categories'], 30)
+
+        else:
+            context['categories'] = categories
+
         context['title'] = 'Catalog'
         return context
 
 
 @login_required(redirect_field_name=None)
 def add_basket(request, product_id):
+
     product = Product.objects.get(id=product_id)
     good_in_basket = Basket.objects.filter(user=request.user, product=product)
 
@@ -45,8 +59,10 @@ def add_basket(request, product_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-@login_required
+@login_required(redirect_field_name=None)
 def remove_basket(request, product_id):
+
     product = Product.objects.get(id=product_id)
     Basket.objects.filter(user=request.user, product=product).delete()
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

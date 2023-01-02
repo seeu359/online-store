@@ -57,3 +57,5 @@ class ProductsTestCase(TestCase):
         response = self.client.post(link)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertRedirects(response, reverse('users:login'))
+
+

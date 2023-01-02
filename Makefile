@@ -16,6 +16,8 @@ dump_prod:
 dump_cat:
 	poetry run python ./manage.py dumpdata products.ProductCategory --indent 2 > products/fixtures/categories.json
 
+dump_users:
+	poetry run python ./manage.py dumpdata users.User --indent 2 > users/fixtures/users.json
 
 lint:
 	poetry run flake8

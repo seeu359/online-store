@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm,
                                        UserCreationForm)
 
-from users.models import EmailVerification, User
+from users.models import User
+from users.tasks import send_vrf_email
 
 
 class AuthForms(AuthenticationForm):
@@ -51,8 +52,7 @@ class UserRegisterForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=True)
-        record = EmailVerification.objects.create(user=user)
-        record.send_verification_email()
+        send_vrf_email.delay(user.id)
         return user
 
     class Meta:

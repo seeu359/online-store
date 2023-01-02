@@ -15,11 +15,14 @@ django-bootstrap4 = "^22.3"
 pillow = "^9.3.0"
 psycopg2 = "^2.9.5"
 django-allauth = "^0.52.0"
+django-redis = "^5.2.0"
+celery = "^5.2.7"
 
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
 isort = "^5.11.4"
+django-debug-toolbar = "^3.8.1"
 
 [build-system]
 requires = ["poetry-core"]
