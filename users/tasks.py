@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from users.models import User, EmailVerification
+from users.models import EmailVerification, User
 
 
 @shared_task

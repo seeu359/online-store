@@ -20,6 +20,7 @@ class User(AbstractUser):
 
 
 class EmailVerification(models.Model):
+
     code = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,11 +30,14 @@ class EmailVerification(models.Model):
         return f'EmailVRFCT for {self.user.email}'
 
     def send_verification_email(self):
+
         verify_link_path = reverse('users:email_ver', args=(
-            self.user.email, self.code
+            self.user.email, self.code,
         ))
+
         link = urljoin(settings.DOMAIN_NAME, verify_link_path)
-        subject = f'Подветреждение почты для {self.user.username}'
+        subject = f'Подтверждение почты для {self.user.username}'
+
         send_mail(
             subject=subject,
             message=f'Verify your email by the following link: {link}',

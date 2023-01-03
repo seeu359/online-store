@@ -11,10 +11,12 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'description',
         ('price', 'quantity'),
+        'stripe_product_price_id',
         'image',
     )
     search_fields = ('name',)
     ordering = ('name',)
+    readonly_fields = ('stripe_product_price_id',)
 
 
 class BasketAdmin(admin.TabularInline):

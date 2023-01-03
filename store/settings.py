@@ -188,6 +188,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' \
     if os.getenv('EMAIL_SENDING') \
     else 'django.core.mail.backends.smtp.EmailBackend'
 
+
+# Authentication by third-party services config
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -205,10 +208,18 @@ SOCIALACCOUNT_PROVIDERS = {
 
 SITE_ID = 1
 
-# Celery
+# Celery config
 
 BROKEN_URL = ''
 
 CELERY_BROKEN_URL = 'redis://127.0.0.1:6379'
 
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+
+# Stripe settings
+
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')

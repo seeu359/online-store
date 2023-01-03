@@ -7,10 +7,12 @@ from users.tasks import send_vrf_email
 
 
 class AuthForms(AuthenticationForm):
+
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите имя пользователя',
     }))
+
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите пароль',
@@ -25,37 +27,45 @@ class AuthForms(AuthenticationForm):
 
 
 class UserRegisterForm(UserCreationForm):
+
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите имя пользователя',
     }))
+
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите имя',
     }))
+
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите фамилию',
     }))
+
     email = forms.CharField(widget=forms.EmailInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите email',
     }))
+
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Введите пароль',
     }))
+
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4',
         'placeholder': 'Повторите пароль',
     }))
 
     def save(self, commit=True):
+
         user = super().save(commit=True)
         send_vrf_email.delay(user.id)
         return user
 
     class Meta:
+
         model = User
         fields = (
             'first_name',

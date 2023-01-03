@@ -17,6 +17,8 @@ psycopg2 = "^2.9.5"
 django-allauth = "^0.52.0"
 django-redis = "^5.2.0"
 celery = "^5.2.7"
+stripe = "^5.0.0"
+loguru = "^0.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
