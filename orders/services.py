@@ -13,6 +13,7 @@ stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
 
 
 def stripe_checkout_session(user):
+
     line_items = get_items_from_basket(user)
     checkout_session = stripe.checkout.Session.create(
         line_items=line_items,
@@ -26,18 +27,22 @@ def stripe_checkout_session(user):
 
 
 def get_payment_url(path):
+
     url = urljoin(settings.DOMAIN_NAME, path)
     return url
 
 
 def fulfill_order(session):
+
     logger.info(session)
     logger.info(session.metadata.order_id)
 
 
 def get_items_from_basket(user) -> list:
+
     user_baskets = Basket.objects.filter(user=user)
     line_items = list()
+
     for basket in user_baskets:
         line_items.append(
             dict(
@@ -45,4 +50,5 @@ def get_items_from_basket(user) -> list:
                 quantity=basket.quantity,
             ),
         )
+
     return line_items
